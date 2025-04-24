@@ -1,58 +1,49 @@
-# modules/ec2/variables.tf
-
 variable "project_name" {
-  description = "Terraform Jenkins"
   type        = string
-  default     = "ritik-tf-jenkins"
+  description = "Project name for resource naming"
 }
 
 variable "environment" {
-  description = "Environment (dev, staging, prod)"
   type        = string
-  default     = "dev"
+  description = "Environment (dev, staging, prod)"
 }
 
 variable "ami_id" {
-  description = "AMI ID for EC2 instances"
   type        = string
+  description = "AMI ID for EC2 instances"
 }
 
 variable "instance_type" {
+  type        = string
   description = "EC2 instance type for application servers"
-  type = map(string)
-  default = {
-    dev     = "t2.micro"
-    staging = "t2.small"
-    prod    = "t2.medium"
-  }
 }
 
 variable "jenkins_instance_type" {
+  type        = string
   description = "EC2 instance type for Jenkins server"
-  type = map(string)
-  default = {
-    dev     = "t2.medium"
-    staging = "t2.large"
-    prod    = "t2.xlarge"
-  }
 }
 
 variable "key_name" {
-  description = "Name of the SSH key pair to use for EC2 instances"
   type        = string
+  description = "Name of the SSH key pair to use"
 }
 
 variable "vpc_id" {
-  description = "ID of the VPC"
   type        = string
+  description = "VPC ID"
 }
 
-variable "public_subnet_ids" {
-  description = "IDs of the public subnets"
-  type        = list(string)
+variable "public_subnet_id" {
+  type        = string
+  description = "Public subnet ID"
 }
 
-variable "private_subnet_ids" {
-  description = "IDs of the private subnets"
-  type        = list(string)
+variable "private_subnet_id" {
+  type        = string
+  description = "Private subnet ID"
+}
+
+variable "instance_count" {
+  type        = number
+  description = "Number of application instances"
 }

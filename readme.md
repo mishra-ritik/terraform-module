@@ -1,25 +1,24 @@
-modules/
+terraform-Module/
 │
-├── ec2/
-│   ├── main.tf
-│   ├── variables.tf
-│   ├── outputs.tf
-│   └── terraform.tfvars
+├── main.tf              # root calling all modules
+├── variables.tf         # defines variables used in root module
+├── terraform.tfvars     # ONLY at root level
+├── outputs.tf
 │
-├── vpc/
-│   ├── main.tf
-│   ├── variables.tf
-│   ├── outputs.tf
-│   └── terraform.tfvars
-│
-├── security_group/
-│   ├── main.tf
-│   ├── variables.tf
-│   ├── outputs.tf
-│   └── terraform.tfvars
-│
-└── storage/
-    ├── main.tf
-    ├── variables.tf
-    ├── outputs.tf
-    └── terraform.tfvars
+└── modules/
+    ├── ec2/
+    │   ├── main.tf
+    │   ├── variables.tf
+    │   └── outputs.tf
+    ├── vpc/
+    │   ├── main.tf
+    │   ├── variables.tf
+    │   └── outputs.tf
+    ├── security_group/
+    │   ├── main.tf
+    │   ├── variables.tf
+    │   └── outputs.tf
+    └── storage/
+        ├── main.tf
+        ├── variables.tf
+        └── outputs.tf

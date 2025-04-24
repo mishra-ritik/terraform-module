@@ -25,14 +25,16 @@ module "vpc" {
 
 # Call EC2 module
 module "ec2" {
-  source                = "./modules/ec2"
-  project_name          = var.project_name
-  environment           = var.environment
-  ami_id                = var.ami_id
-  instance_type         = var.instance_types 
-  key_name              = var.key_name
-  vpc_id                = module.vpc.vpc_id
-  public_subnet_ids     = module.vpc.public_subnet_ids
-  private_subnet_ids    = module.vpc.private_subnet_ids
-  jenkins_instance_type = var.jenkins_instance_types
+  source                 = "./modules/ec2"
+  project_name           = var.project_name
+  environment            = var.environment
+  ami_id                 = var.ami_id
+  instance_type          = var.instance_types[var.environment]
+  key_name               = var.key_name
+  vpc_id                 = module.vpc.vpc_id
+  public_subnet_id       = module.vpc.public_subnet_ids[0]
+  private_subnet_id      = module.vpc.private_subnet_ids[0]
+  jenkins_instance_type  = var.jenkins_instance_types[var.environment]
+  instance_count         = var.instance_count
 }
+

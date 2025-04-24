@@ -71,3 +71,9 @@ variable "key_name" {
   type        = string
   default     = "ritik_1610"
 }
+
+variable "instance_count" {
+  description = "Number of application instances to create"
+  type        = number
+  default     = 2
+}

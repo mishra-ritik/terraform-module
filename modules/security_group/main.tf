@@ -1,5 +1,3 @@
-# modules/ec2/security_groups.tf
-
 resource "aws_security_group" "jenkins" {
   name        = "${var.project_name}-${var.environment}-jenkins-sg"
   description = "Security group for Jenkins server"
@@ -27,12 +25,6 @@ resource "aws_security_group" "jenkins" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
     description = "Allow all outbound traffic"
-  }
-
-  tags = {
-    Name        = "${var.project_name}-${var.environment}-jenkins-sg"
-    Environment = var.environment
-    Project     = var.project_name
   }
 }
 
@@ -71,11 +63,5 @@ resource "aws_security_group" "app" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
     description = "Allow all outbound traffic"
-  }
-
-  tags = {
-    Name        = "${var.project_name}-${var.environment}-app-sg"
-    Environment = var.environment
-    Project     = var.project_name
   }
 }
