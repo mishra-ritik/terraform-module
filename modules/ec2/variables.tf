@@ -47,3 +47,8 @@ variable "instance_count" {
   type        = number
   description = "Number of application instances"
 }
+
+variable "tags" {
+  description = "Common tags to be used across resources"
+  type        = map(string)
+}

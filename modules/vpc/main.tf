@@ -3,9 +3,9 @@ resource "aws_vpc" "this" {
   enable_dns_support = true
   enable_dns_hostnames = true
 
-  tags = {
+  tags = merge(var.tags, {
     Name = "${var.project_name}-${var.environment}-vpc"
-  }
+  })
 }
 
 resource "aws_subnet" "public" {
@@ -16,9 +16,9 @@ resource "aws_subnet" "public" {
   availability_zone       = var.availability_zones[count.index]
   map_public_ip_on_launch = true
 
-  tags = {
+  tags = merge(var.tags, {
     Name = "${var.project_name}-${var.environment}-public-subnet-${count.index + 1}"
-  }
+  })
 }
 
 resource "aws_subnet" "private" {
@@ -28,17 +28,17 @@ resource "aws_subnet" "private" {
   cidr_block        = var.private_subnet_cidrs[count.index]
   availability_zone = var.availability_zones[count.index]
 
-  tags = {
+  tags = merge(var.tags, {
     Name = "${var.project_name}-${var.environment}-private-subnet-${count.index + 1}"
-  }
+  })
 }
 
 resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.this.id
 
-  tags = {
+  tags = merge(var.tags, {
     Name = "${var.project_name}-${var.environment}-internet-gateway"
-  }
+  })
 }
 
 resource "aws_eip" "nat" {
@@ -49,8 +49,8 @@ resource "aws_nat_gateway" "this" {
   allocation_id = aws_eip.nat.id
   subnet_id     = aws_subnet.public[0].id  # Adjust to your actual public subnet if needed
   
-  tags = {
+  tags = merge(var.tags, {
     Name = "${var.project_name}-${var.environment}-nat-gateway"
-  }
+  })
 }
 

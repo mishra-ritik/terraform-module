@@ -12,3 +12,8 @@ variable "vpc_id" {
   type        = string
   description = "VPC ID"
 }
+
+variable "tags" {
+  description = "Common tags to be used across resources"
+  type        = map(string)
+}

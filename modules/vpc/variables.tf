@@ -27,3 +27,8 @@ variable "availability_zones" {
   type        = list(string)
   description = "Availability zones for the subnets"
 }
+
+variable "tags" {
+  description = "Common tags to be used across resources"
+  type        = map(string)
+}

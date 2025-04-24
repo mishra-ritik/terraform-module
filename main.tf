@@ -21,6 +21,8 @@ module "vpc" {
   public_subnet_cidrs  = var.public_subnet_cidrs
   private_subnet_cidrs = var.private_subnet_cidrs
   availability_zones   = var.availability_zones
+
+  tags = var.tags
 }
 
 # Call EC2 module
@@ -36,5 +38,7 @@ module "ec2" {
   private_subnet_id      = module.vpc.private_subnet_ids[0]
   jenkins_instance_type  = var.jenkins_instance_types[var.environment]
   instance_count         = var.instance_count
+  tags                   = var.tags
 }
+
 

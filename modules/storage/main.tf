@@ -3,7 +3,7 @@ resource "aws_ebs_volume" "jenkins_volume" {
   size              = var.size
   type              = var.volume_type
 
-  tags = {
+  tags =  {
     Name = "${var.project_name}-${var.environment}-jenkins-volume"
   }
 }
